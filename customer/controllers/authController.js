@@ -160,7 +160,7 @@ module.exports.protectRoute = async function protectRoute(req, res, next) {
         if(req.cookies.refreshToken)
         {
             let token = req.cookies.refreshToken;
-            let payload = jwt.verify(token, JWT_KEY);
+            let payload = await jwt.verify(token, JWT_KEY);
             if(payload)
             {
                 // console.log(payload);
