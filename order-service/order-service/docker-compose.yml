@@ -1,0 +1,31 @@
+version: '4'
+services:
+  mysql:
+    image: mysql:8.3.0
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: Pratyush@6271
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./mysql:/var/lib/mysql
+      - ./docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+
+# ports : "3307:3306"
+# 3307 - host machine's port, 3306 - container port
+# Container-port(3306) : This is the default MySQL port inside the container, where mySQL listens for connections.
+# Host machine's port(3307) : This is the port on your local machine(host) that will be used to access the MySQL service running in the container.
+
+###############
+# Commands used -
+# docker compose up -d  => Starts the containers present inside the docker-compose.yml file
+# docker compose down => Stops and removes all containers, networks and other resources created by the docker-compose.yml file
+
+###############
+# Data persistence
+# ./mysql:/var/lib/mysql  => Refers to the folder "mysql" in the same directory as that of docker-compose.yml file. If folder "mysql" is not present, it creates one. Then it stores all the database files into the directory "/var/lib/mysql"(i.e., data, logs, etc)
+# "./docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql" => On the first startup of the container, it executes the queries present in the file. Basically, that's configured as an entrypoint to the booting up of the container.
+
+
+
